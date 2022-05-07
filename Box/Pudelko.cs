@@ -14,18 +14,14 @@ namespace Box
     public sealed class Pudelko : IEquatable<Pudelko>, IFormattable, IEnumerable, IComparable<Pudelko>
     {
         private UnitOfMeasure Unit { get; set; }
-
         public readonly double A;
         public readonly double B;
         public readonly double C;
-
         public double Objetosc => Math.Round(A * B * C, 9);
         public double Pole => Math.Round((A * B * 2) + (A * C * 2) + (B * C * 2), 6);
 
         public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.meter)
         {
-
-
             this.A = a == null ? 0.1 : ConvertToMeter((double)a, unit);
             this.B = b == null ? 0.1 : ConvertToMeter((double)b, unit);
             this.C = c == null ? 0.1 : ConvertToMeter((double)c, unit);
@@ -34,7 +30,6 @@ namespace Box
             {
                 throw new ArgumentOutOfRangeException();
             }
-
             if (IsProperWithGuidelines() == false)
             {
                 throw new ArgumentOutOfRangeException();
@@ -93,7 +88,6 @@ namespace Box
 
             }
         }
-
         public bool Equals(Pudelko other)
         {
             if (other == null) return false;
@@ -110,12 +104,10 @@ namespace Box
                 return false;
             }
         }
-
         public override int GetHashCode()
         {
             return A.GetHashCode() + B.GetHashCode() + C.GetHashCode() + Unit.GetHashCode();
         }
-
         public static bool operator ==(Pudelko p1, Pudelko p2)
         {
             if (((object)p1) == null || ((object)p2) == null)
@@ -138,7 +130,6 @@ namespace Box
             double edgeB = 0;
             double edgeC = 0;
             double[,] p1Edges = new double[6, 3] { {p1.A, p1.B,p1.C},{p1.A, p1.C,p1.B},{p1.B, p1.A,p1.C},{p1.B, p1.C,p1.A},{p1.C, p1.A,p1.B},{p1.C, p1.B,p1.A} };
-
             double[,] p2Edges = new double[6, 3] { {p2.A, p2.B,p2.C}, {p2.A, p2.C,p2.B}, {p2.B, p2.A,p2.C}, {p2.B, p2.C,p2.A}, {p2.C, p2.A,p2.B}, {p2.C, p2.B,p2.A} };
 
             for (int i = 0; i < 6; i++)
@@ -157,9 +148,7 @@ namespace Box
                         edgeC = tempEdgeC;
                     }
                 }
-
             }
-
             return new Pudelko(edgeA, edgeB, edgeC);
         }
         public double[] ConvertToArray(Pudelko p)
@@ -167,7 +156,6 @@ namespace Box
             double[] result = new double[3] { p.A, p.B, p.C };
             return result;
         }
-
         public IEnumerator<double> GetEnumerator()
         {
             yield return A;
@@ -218,9 +206,7 @@ namespace Box
             {
                 return this.Objetosc > other.Objetosc ? 1 : -1;
             }
-
         }
-
         private int compareByArea(Pudelko other)
         {
             if (this.Pole == other.Pole)
@@ -232,7 +218,6 @@ namespace Box
                 return this.Pole > other.Pole ? 1 : -1;
             }
         }
-
         private int compareBySides(Pudelko other)
         {
             if (this.A + this.B + this.C > other.A + other.B + other.C)

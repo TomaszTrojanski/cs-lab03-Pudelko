@@ -36,7 +36,6 @@ namespace PudelkoUnitTests
         public void Constructor_Default()
         {
             Pudelko p = new Pudelko();
-
             Assert.AreEqual(defaultSize, p.A, delta: accuracy);
             Assert.AreEqual(defaultSize, p.B, delta: accuracy);
             Assert.AreEqual(defaultSize, p.C, delta: accuracy);
@@ -51,7 +50,6 @@ namespace PudelkoUnitTests
                                                       double expectedA, double expectedB, double expectedC)
         {
             Pudelko p = new Pudelko(a, b, c);
-
             AssertPudelko(p, expectedA, expectedB, expectedC);
         }
 
@@ -64,7 +62,6 @@ namespace PudelkoUnitTests
                                                       double expectedA, double expectedB, double expectedC)
         {
             Pudelko p = new Pudelko(a, b, c, unit: UnitOfMeasure.meter);
-
             AssertPudelko(p, expectedA, expectedB, expectedC);
         }
 
@@ -77,7 +74,6 @@ namespace PudelkoUnitTests
                                                       double expectedA, double expectedB, double expectedC)
         {
             Pudelko p = new Pudelko(a: a, b: b, c: c, unit: UnitOfMeasure.centimeter);
-
             AssertPudelko(p, expectedA, expectedB, expectedC);
         }
 
@@ -102,7 +98,6 @@ namespace PudelkoUnitTests
         public void Constructor_2params_DefaultMeters(double a, double b, double expectedA, double expectedB)
         {
             Pudelko p = new Pudelko(a, b);
-
             AssertPudelko(p, expectedA, expectedB, expectedC: 0.1);
         }
 
@@ -124,7 +119,6 @@ namespace PudelkoUnitTests
         public void Constructor_2params_InCentimeters(double a, double b, double expectedA, double expectedB)
         {
             Pudelko p = new Pudelko(unit: UnitOfMeasure.centimeter, a: a, b: b);
-
             AssertPudelko(p, expectedA, expectedB, expectedC: 0.1);
         }
 
@@ -135,7 +129,6 @@ namespace PudelkoUnitTests
         public void Constructor_2params_InMilimeters(double a, double b, double expectedA, double expectedB)
         {
             Pudelko p = new Pudelko(unit: UnitOfMeasure.milimeter, a: a, b: b);
-
             AssertPudelko(p, expectedA, expectedB, expectedC: 0.1);
         }
 
@@ -144,7 +137,6 @@ namespace PudelkoUnitTests
         public void Constructor_1param_DefaultMeters(double a)
         {
             Pudelko p = new Pudelko(a);
-
             Assert.AreEqual(a, p.A);
             Assert.AreEqual(0.1, p.B);
             Assert.AreEqual(0.1, p.C);
@@ -155,7 +147,6 @@ namespace PudelkoUnitTests
         public void Constructor_1param_InMeters(double a)
         {
             Pudelko p = new Pudelko(a);
-
             Assert.AreEqual(a, p.A);
             Assert.AreEqual(0.1, p.B);
             Assert.AreEqual(0.1, p.C);
@@ -168,7 +159,6 @@ namespace PudelkoUnitTests
         public void Constructor_1param_InCentimeters(double a, double expectedA)
         {
             Pudelko p = new Pudelko(unit: UnitOfMeasure.centimeter, a: a);
-
             AssertPudelko(p, expectedA, expectedB: 0.1, expectedC: 0.1);
         }
 
@@ -179,7 +169,6 @@ namespace PudelkoUnitTests
         public void Constructor_1param_InMilimeters(double a, double expectedA)
         {
             Pudelko p = new Pudelko(unit: UnitOfMeasure.milimeter, a: a);
-
             AssertPudelko(p, expectedA, expectedB: 0.1, expectedC: 0.1);
         }
 
@@ -403,7 +392,6 @@ namespace PudelkoUnitTests
         {
             var p = new Pudelko(2.5, 9.321);
             string expectedStringEN = "2.500 m × 9.321 m × 0.100 m";
-
             Assert.AreEqual(expectedStringEN, p.ToString());
         }
 
@@ -431,19 +419,16 @@ namespace PudelkoUnitTests
         [DataRow(0.1, 1, 0.2, 0.64)]
         [DataRow(1.2, 1.1, 1.4, 9.08)]
 
-
         public void Pole(double a, double b, double c, double excepted)
         {
             Pudelko p1 = new Pudelko(a, b, c);
             Assert.AreEqual(excepted, p1.Pole);
-
         }
 
         [TestMethod, TestCategory("Objêtoœæ")]
         [DataRow(1, 1, 1, 1)]
         [DataRow(0.1, 1, 0.2, 0.02)]
         [DataRow(1.2, 1.1, 1.4, 1.848)]
-
 
         public void Objetosc(double a, double b, double c, double excepted)
         {
